@@ -15,3 +15,12 @@ __Q1- Using OnlineRetail dataset to write at least 4 analytical SQL queries that
    • Second query based on previous query that provides insights into the rate of change in December sales between the years 2010 and 2011,      which can be useful for business owners to monitor and make informed decisions on their sales strategy
    
    ![image](https://github.com/AbdulazizAmen/Analytical-SQL-Online-Retail-Case-Study/assets/74801428/a9d26bf7-ae56-433d-bb91-dd9d8762482a)
+
+
+   • Third query identify the top five selling days of the month for each month of the year
+    
+   • This information can be used to plan promotions and discounts on high-selling days, and to identify opportunities to increase sales      during slower periods of the month.
+
+
+![image](https://github.com/AbdulazizAmen/Analytical-SQL-Online-Retail-Case-Study/assets/74801428/d75bdb37-0601-453f-b045-382e8e3fa122)
+
