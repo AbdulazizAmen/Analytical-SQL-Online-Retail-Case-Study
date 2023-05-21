@@ -10,3 +10,4 @@ __Q2- implement a Monetary model for customers behavior for product purchasing a
    __• Frequency => how many times the customer has bought from our store__
       
    __• Monetary => how much each customer has paid for our products__ 
+
