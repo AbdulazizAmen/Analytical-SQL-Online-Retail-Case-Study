@@ -7,4 +7,5 @@ __Q1- Using OnlineRetail dataset to write at least 4 analytical SQL queries that
    •	MY first query retrieves data from a table "tableRetail" and calculates the total sales for each quarter and year based on the            "InvoiceDate" . 
    
    •	This query allowing us to compare sales across different quarters and years and can gain insights into how the business is performing       over time.
+   
 ![image](https://github.com/AbdulazizAmen/Analytical-SQL-Online-Retail-Case-Study/assets/74801428/f998fc98-f9c8-4bf5-9750-d3ac5fc29f25)
