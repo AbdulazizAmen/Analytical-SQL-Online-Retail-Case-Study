@@ -9,3 +9,9 @@ __Q1- Using OnlineRetail dataset to write at least 4 analytical SQL queries that
    •	This query allowing us to compare sales across different quarters and years and can gain insights into how the business is performing       over time.
    
 ![image](https://github.com/AbdulazizAmen/Analytical-SQL-Online-Retail-Case-Study/assets/74801428/f998fc98-f9c8-4bf5-9750-d3ac5fc29f25)
+
+
+
+   • Second query based on previous query that provides insights into the rate of change in December sales between the years 2010 and 2011,      which can be useful for business owners to monitor and make informed decisions on their sales strategy
+   
+   ![image](https://github.com/AbdulazizAmen/Analytical-SQL-Online-Retail-Case-Study/assets/74801428/a9d26bf7-ae56-433d-bb91-dd9d8762482a)
