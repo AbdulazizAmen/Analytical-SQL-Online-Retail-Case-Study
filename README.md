@@ -5,4 +5,5 @@ Background: Customers has purchasing transaction that we shall be monitoring to 
 __Q1- Using OnlineRetail dataset to write at least 4 analytical SQL queries that tells a story about the data__
 
    •	MY first query retrieves data from a table "tableRetail" and calculates the total sales for each quarter and year based on the            "InvoiceDate" . 
+   
    •	This query allowing us to compare sales across different quarters and years and can gain insights into how the business is performing       over time.
