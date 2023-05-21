@@ -24,3 +24,11 @@ __Q1- Using OnlineRetail dataset to write at least 4 analytical SQL queries that
 
 ![image](https://github.com/AbdulazizAmen/Analytical-SQL-Online-Retail-Case-Study/assets/74801428/d75bdb37-0601-453f-b045-382e8e3fa122)
 
+   • Last query calculates the total sales for the first 10 days, second 10 days, and third 10 days of each month based on the invoice         date.
+   • 	The output of the query provides insights into which time period within each month tends to have the highest sales, which could be       useful for retailers to optimize their marketing and inventory strategies.
+   
+   
+   
+   ![image](https://github.com/AbdulazizAmen/Analytical-SQL-Online-Retail-Case-Study/assets/74801428/03b79b0f-abfa-4cda-b103-b7c0a9018742)
+
+
