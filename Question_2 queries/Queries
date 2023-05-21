@@ -1,0 +1,62 @@
+========================================================================================================================================================
+								 Question Two
+========================================================================================================================================================
+
+ WITH Cte_1 AS (
+  SELECT customer_id, Quantity, Price ,Invoice,
+         TO_DATE(InvoiceDate, 'MM/DD/YYYY HH24:MI') AS Resent_date 
+  FROM tableRetail
+), Cte_2 AS (
+  SELECT DISTINCT 
+         customer_id,
+         ROUND(MAX(Resent_date) OVER () - MAX(Resent_date) OVER (PARTITION BY customer_id)) AS recency,     
+         COUNT(distinct(Invoice)) OVER (PARTITION BY customer_id) AS frequency,    
+         SUM(Price * Quantity) OVER (PARTITION BY customer_id) AS monetary,
+         CASE 
+             WHEN ROUND(MAX(Resent_date) OVER () - MAX(Resent_date) OVER (PARTITION BY customer_id)) <= 30 THEN 5
+             WHEN ROUND(MAX(Resent_date) OVER () - MAX(Resent_date) OVER (PARTITION BY customer_id)) <= 60 THEN 4 
+             WHEN ROUND(MAX(Resent_date) OVER () - MAX(Resent_date) OVER (PARTITION BY customer_id)) <= 90 THEN 3        
+             WHEN ROUND(MAX(Resent_date) OVER () - MAX(Resent_date) OVER (PARTITION BY customer_id)) <= 180 THEN 2
+             ELSE 1          
+         END AS R_score,
+         CASE 
+             WHEN COUNT(*) OVER (PARTITION BY customer_id) > 100 AND SUM(Price * Quantity) OVER (PARTITION BY customer_id) > 1000 THEN 5
+             WHEN COUNT(*) OVER (PARTITION BY customer_id) > 50 AND SUM(Price * Quantity) OVER (PARTITION BY customer_id) > 500 THEN 4 
+             WHEN COUNT(*) OVER (PARTITION BY customer_id) > 25 AND SUM(Price * Quantity) OVER (PARTITION BY customer_id) > 250 THEN 3        
+             WHEN COUNT(*) OVER (PARTITION BY customer_id) > 10 AND SUM(Price * Quantity) OVER (PARTITION BY customer_id) > 100 THEN 2
+             ELSE 1          
+         END AS FM_score
+  FROM Cte_1 c
+)
+SELECT customer_id  , recency, frequency ,  monetary ,  R_score ,  FM_score,
+  CASE
+    
+    WHEN R_score = 5  AND FM_score IN (5, 4)   THEN 'champions'
+    WHEN R_score = 4 AND FM_score      = 5      THEN 'champions'
+    
+    WHEN R_score = 5 AND FM_score     =2          THEN 'potential loyalist'
+    WHEN R_score = 4 AND FM_score in ( 2 , 3)     THEN 'potential loyalist'
+    WHEN R_score = 3 AND FM_score    = 3          THEN 'potential loyalist'
+    
+    WHEN R_score = 5 AND FM_score        = 3        THEN 'loyal customers'
+    WHEN R_score = 4 AND FM_score        = 4        THEN 'loyal customers'
+    WHEN R_score = 3 AND FM_score in ( 5 , 4 )      THEN 'loyal customers'
+    
+    WHEN R_score = 5 AND FM_score     = 1     THEN 'recent customer'
+    
+    WHEN R_score = 4 AND FM_score     = 1     THEN 'promising'
+    WHEN R_score = 3 AND FM_score     = 1     THEN 'promising'
+    
+    WHEN R_score  = 2  AND FM_score in ( 3 , 2 )   THEN 'needs attention'
+    WHEN R_score  = 3  AND FM_score    =  2        THEN 'needs attention'
+    
+    WHEN R_score  =  2  AND FM_score in (5, 4  )   THEN 'At Risk'
+    WHEN R_score  =  1  AND FM_score   = 3         THEN 'At Risk'
+    
+    WHEN R_score  =  1  AND FM_score in (5, 4  )   THEN 'cant lose them '
+    WHEN R_score  =  1  AND FM_score = 2  THEN 'Hibernating'
+    WHEN R_score  =  1  AND FM_score = 1  THEN 'lost'
+   
+ELSE 'About to sleep '
+END AS Customer_segmentation
+FROM Cte_2
